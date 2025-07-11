@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Certificate Preview</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            text-align: center;
+        }
+        img {
+            max-width: 90%;
+            height: auto;
+            border: 2px solid #aaa;
+            margin-top: 20px;
+        }
+        .buttons {
+            margin-top: 30px;
+        }
+        a, button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            text-decoration: none;
+            color: white;
+            background-color: #444;
+            border: none;
+            cursor: pointer;
+        }
+        a:hover, button:hover {
+            background-color: #d33;
+        }
+    </style>
+</head>
+<body>
+    <h2>Certificate Preview</h2>
+    <img src="{{ url_for('preview_image') }}" alt="Certificate Preview">
+    <div class="buttons">
+        <a href="{{ url_for('download') }}">Download</a>
+        <a href="{{ url_for('cancel') }}">Cancel</a>
+    </div>
+</body>
+</html>

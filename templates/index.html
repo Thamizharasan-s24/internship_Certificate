@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Internship Certificate Generator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .form-row {
+            width: 48%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input, select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: #4a90e2;
+            outline: none;
+            background-color: #fff;
+        }
+
+        .buttons {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 15px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        button[type="reset"] {
+            background-color: #f44336;
+            color: white;
+            margin-left: 15px;
+        }
+
+        button[type="reset"]:hover {
+            background-color: #d32f2f;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Generate Internship Certificate</h2>
+        <form action="/generate" method="post">
+            <div class="form-row">
+                <label>Name:</label>
+                <input type="text" name="name" required>
+            </div>
+            <div class="form-row">
+                <label>ID No:</label>
+                <input type="text" name="id_no" required>
+            </div>
+            <div class="form-row">
+                <label>Department:</label>
+                <input type="text" name="department" required>
+            </div>
+            <div class="form-row">
+                <label>University/College:</label>
+                <input type="text" name="university" required>
+            </div>
+            <div class="form-row">
+                <label>Role:</label>
+                <input type="text" name="role" required>
+            </div>
+            <div class="form-row">
+                <label>Start Date:</label>
+                <input type="date" name="start_date" required>
+            </div>
+            <div class="form-row">
+                <label>End Date:</label>
+                <input type="date" name="end_date" required>
+            </div>
+            <div class="form-row">
+                <label>Issue Date:</label>
+                <input type="date" name="issue_date" required>
+            </div>
+            <div class="form-row">
+                <label>Reg Year:</label>
+                <input type="text" name="reg_year" maxlength="4" required>
+            </div>
+            <div class="form-row">
+                <label>Reg No (3 digits):</label>
+                <input type="text" name="reg_number" maxlength="3" required>
+            </div>
+            <div class="form-row">
+                <label>Format:</label>
+                <select name="file_format" required>
+                    <option value="png">PNG</option>
+                    <option value="jpg">JPG</option>
+                    <option value="pdf">PDF</option>
+                </select>
+            </div>
+            <div class="buttons">
+                <button type="submit">Generate</button>
+                <button type="reset">Clear</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
