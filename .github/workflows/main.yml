@@ -1,0 +1,45 @@
+name: Auto Deploy Flask with Docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: SSH and Deploy to EC2
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ec2-user
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: |
+          # Go to app directory or clone it
+          cd internship || git clone https://github.com/Thamizharasan-s24/internship-Certificate.git internship  && cd internship
+          
+          # Pull latest code
+          git pull origin main
+          
+          # Build Docker image
+          docker build -t flask-app .
+          
+          # Stop and remove old container if running
+          docker stop flask-container || true
+          docker rm flask-container || true
+          
+          # Create data folder if not exists
+          mkdir -p /home/ec2-user/data
+          
+          # Run new container with volume mapping for Excel file
+          docker run -d \
+            -p 80:80 \
+            --restart always \
+            --name flask-container \
+            -v /home/ec2-user/data:/app/data \
+            flask-app
